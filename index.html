@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shahriyar Islam Shohan — AI Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0a0a0a;
+  --bg2: #111111;
+  --bg3: #161616;
+  --border: rgba(255,255,255,0.08);
+  --border-hover: rgba(255,255,255,0.15);
+  --accent: #a3e635;
+  --accent-dim: rgba(163,230,53,0.1);
+  --accent-dim2: rgba(163,230,53,0.06);
+  --text: #f0f0f0;
+  --text2: #888;
+  --text3: #555;
+  --mono: 'JetBrains Mono', monospace;
+  --sans: 'Inter', sans-serif;
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border-hover); border-radius: 2px; }
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px; height: 64px;
+  background: rgba(10,10,10,0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--border);
+  transition: all 0.3s;
+}
+.nav-logo {
+  font-family: var(--mono); font-weight: 600; font-size: 0.95rem;
+  color: var(--text); text-decoration: none;
+  letter-spacing: -0.02em;
+}
+.nav-logo span { color: var(--accent); }
+.nav-links {
+  display: flex; align-items: center; gap: 32px;
+  list-style: none;
+}
+.nav-links a {
+  font-family: var(--mono); font-size: 0.78rem;
+  color: var(--text2); text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-toggle {
+  display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px;
+}
+.nav-toggle span {
+  display: block; width: 22px; height: 1.5px;
+  background: var(--text2); transition: all 0.3s;
+}
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  display: grid; grid-template-columns: 1fr;
+  position: relative; overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, #0a0a0a 0%, #0f1a0a 50%, #0a0a0a 100%);
+}
+.hero-bg-img {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 70% 40%, rgba(163,230,53,0.04) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 20% 80%, rgba(163,230,53,0.02) 0%, transparent 70%);
+}
+/* Grid pattern */
+.hero-bg::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+.hero-content {
+  position: relative; z-index: 2;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 120px 48px 80px;
+  max-width: 900px; margin: 0 auto; width: 100%;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 0.72rem;
+  color: var(--accent); letter-spacing: 0.08em;
+  margin-bottom: 32px;
+  padding: 6px 14px; border: 1px solid rgba(163,230,53,0.2);
+  border-radius: 40px; background: rgba(163,230,53,0.05);
+  width: fit-content;
+}
+.hero-badge-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent);
+  animation: blink 2s ease-in-out infinite;
+}
+@keyframes blink {
+  0%,100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+.hero-name {
+  font-family: var(--mono); font-weight: 700;
+  font-size: clamp(3rem, 7vw, 6rem);
+  line-height: 1; letter-spacing: -0.04em;
+  color: var(--text); margin-bottom: 8px;
+}
+.hero-handle {
+  font-family: var(--mono); font-size: 1.1rem;
+  color: var(--text3); margin-bottom: 28px; letter-spacing: -0.01em;
+}
+.hero-handle span { color: var(--text2); }
+.hero-desc {
+  font-size: 1.05rem; color: var(--text2); font-weight: 300;
+  max-width: 520px; margin-bottom: 40px; line-height: 1.75;
+}
+.hero-btns {
+  display: flex; gap: 14px; flex-wrap: wrap;
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 24px; border-radius: var(--radius-sm);
+  font-family: var(--mono); font-size: 0.82rem;
+  font-weight: 500; letter-spacing: 0.02em;
+  text-decoration: none; transition: all 0.25s; cursor: pointer;
+  border: none;
+}
+.btn-primary {
+  background: var(--accent); color: #0a0a0a;
+}
+.btn-primary:hover {
+  background: #bef264; transform: translateY(-1px);
+  box-shadow: 0 8px 30px rgba(163,230,53,0.25);
+}
+.btn-secondary {
+  background: transparent; color: var(--text);
+  border: 1px solid var(--border-hover);
+}
+.btn-secondary:hover {
+  border-color: var(--accent); color: var(--accent);
+  transform: translateY(-1px);
+}
+.hero-scroll {
+  position: absolute; bottom: 40px; left: 48px;
+  display: flex; align-items: center; gap: 12px; z-index: 2;
+  font-family: var(--mono); font-size: 0.7rem; color: var(--text3);
+  text-decoration: none; letter-spacing: 0.1em;
+  animation: scrollBounce 2.5s ease-in-out infinite;
+}
+.hero-scroll::before {
+  content: '';
+  display: block; width: 1px; height: 40px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+}
+@keyframes scrollBounce {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+/* ─── SECTIONS ─── */
+section { padding: 120px 48px; }
+.section-inner { max-width: 900px; margin: 0 auto; }
+.section-label {
+  font-family: var(--mono); font-size: 0.72rem;
+  color: var(--accent); letter-spacing: 0.15em;
+  margin-bottom: 16px; display: block;
+}
+.section-title {
+  font-family: var(--mono); font-weight: 700;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  letter-spacing: -0.04em; color: var(--text);
+  margin-bottom: 12px; line-height: 1.1;
+}
+.section-sub {
+  font-size: 0.92rem; color: var(--text2);
+  margin-bottom: 60px; font-weight: 300;
+}
+
+/* ─── ABOUT ─── */
+#about { background: var(--bg2); }
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+  align-items: start;
+}
+.about-photo-wrap { position: relative; }
+.about-photo-inner {
+  position: relative; border-radius: var(--radius); overflow: hidden;
+  aspect-ratio: 1/1;
+  border: 1px solid var(--border);
+}
+.about-photo-inner img {
+  width: 100%; height: 100%; object-fit: cover; object-position: top center;
+  display: block; filter: grayscale(30%) contrast(1.05);
+  transition: filter 0.5s;
+}
+.about-photo-inner:hover img { filter: grayscale(0%) contrast(1); }
+.about-photo-badge {
+  position: absolute; top: 16px; left: 16px;
+  background: rgba(10,10,10,0.85); backdrop-filter: blur(10px);
+  border: 1px solid var(--border);
+  padding: 8px 14px; border-radius: 6px;
+  font-family: var(--mono); font-size: 0.68rem; color: var(--text2);
+}
+.terminal-box {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: var(--radius); overflow: hidden;
+  margin-bottom: 24px;
+}
+.terminal-bar {
+  padding: 10px 16px; background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 8px;
+}
+.terminal-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+}
+.terminal-bar-title {
+  font-family: var(--mono); font-size: 0.68rem;
+  color: var(--text3); margin-left: auto; margin-right: auto;
+}
+.terminal-body {
+  padding: 20px 20px;
+  font-family: var(--mono); font-size: 0.8rem;
+  line-height: 2;
+}
+.term-line { display: flex; gap: 10px; align-items: flex-start; }
+.term-prompt { color: var(--accent); flex-shrink: 0; }
+.term-cmd { color: var(--text); }
+.term-out { color: var(--text2); padding-left: 20px; }
+
+.about-text p {
+  font-size: 0.95rem; color: var(--text2); line-height: 1.85;
+  margin-bottom: 16px; font-weight: 300;
+}
+.about-text p strong { color: var(--text); font-weight: 500; }
+.stats-row {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 0; margin-top: 48px;
+  border: 1px solid var(--border); border-radius: var(--radius);
+  overflow: hidden;
+}
+.stat-box {
+  padding: 24px 20px; text-align: center;
+  border-right: 1px solid var(--border);
+}
+.stat-box:last-child { border-right: none; }
+.stat-box-num {
+  font-family: var(--mono); font-size: 1.8rem;
+  font-weight: 700; color: var(--accent); line-height: 1;
+  margin-bottom: 6px; letter-spacing: -0.04em;
+}
+.stat-box-label {
+  font-family: var(--mono); font-size: 0.68rem;
+  color: var(--text3); letter-spacing: 0.05em;
+}
+
+/* ─── PROJECTS ─── */
+#projects { background: var(--bg); }
+.projects-list { display: flex; flex-direction: column; gap: 1px; }
+.project-item {
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 40px; align-items: start;
+  padding: 32px 0; border-top: 1px solid var(--border);
+  transition: all 0.3s; cursor: default;
+  position: relative;
+}
+.project-item:last-child { border-bottom: 1px solid var(--border); }
+.project-item::before {
+  content: ''; position: absolute;
+  left: -48px; right: -48px; top: 0; bottom: 0;
+  background: var(--accent-dim2); opacity: 0;
+  transition: opacity 0.3s;
+}
+.project-item:hover::before { opacity: 1; }
+.project-item:hover .project-arrow { color: var(--accent); transform: translate(3px, -3px); }
+.project-num {
+  font-family: var(--mono); font-size: 0.7rem;
+  color: var(--text3); margin-bottom: 10px; letter-spacing: 0.1em;
+}
+.project-name {
+  font-family: var(--mono); font-size: 1.25rem;
+  font-weight: 600; color: var(--text);
+  margin-bottom: 10px; letter-spacing: -0.02em;
+}
+.project-desc {
+  font-size: 0.9rem; color: var(--text2); line-height: 1.7;
+  max-width: 520px; margin-bottom: 16px; font-weight: 300;
+}
+.project-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.tag {
+  font-family: var(--mono); font-size: 0.68rem;
+  padding: 4px 10px; border-radius: 4px;
+  background: var(--bg3); border: 1px solid var(--border);
+  color: var(--text2); letter-spacing: 0.03em;
+  transition: all 0.2s;
+}
+.project-item:hover .tag {
+  border-color: rgba(163,230,53,0.2); color: var(--text);
+}
+.project-arrow {
+  font-size: 1.4rem; color: var(--text3);
+  transition: all 0.3s; align-self: center;
+  position: relative; z-index: 1;
+}
+
+/* ─── SKILLS ─── */
+#skills { background: var(--bg2); }
+.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.skill-group {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 28px;
+  transition: border-color 0.3s;
+}
+.skill-group:hover { border-color: var(--border-hover); }
+.skill-group-title {
+  font-family: var(--mono); font-size: 0.82rem;
+  font-weight: 600; color: var(--text);
+  margin-bottom: 24px; letter-spacing: -0.01em;
+}
+.skill-bars { display: flex; flex-direction: column; gap: 16px; }
+.skill-bar-item {}
+.skill-bar-top {
+  display: flex; justify-content: space-between;
+  margin-bottom: 8px;
+}
+.skill-bar-name {
+  font-family: var(--mono); font-size: 0.75rem; color: var(--text2);
+}
+.skill-bar-pct {
+  font-family: var(--mono); font-size: 0.72rem; color: var(--accent);
+}
+.skill-bar-track {
+  height: 3px; background: var(--bg2); border-radius: 2px; overflow: hidden;
+}
+.skill-bar-fill {
+  height: 100%; background: var(--accent); border-radius: 2px;
+  width: 0; transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* ─── EXPERIENCE ─── */
+#experience { background: var(--bg); }
+.exp-list { display: flex; flex-direction: column; }
+.exp-item {
+  display: grid; grid-template-columns: 160px 1fr;
+  gap: 40px; padding: 40px 0;
+  border-top: 1px solid var(--border);
+  position: relative;
+}
+.exp-item:last-child { border-bottom: 1px solid var(--border); }
+.exp-year {
+  font-family: var(--mono); font-size: 0.78rem;
+  color: var(--text3); padding-top: 4px; letter-spacing: 0.02em;
+}
+.exp-dot {
+  position: absolute; left: 148px; top: 44px;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent); box-shadow: 0 0 8px rgba(163,230,53,0.4);
+}
+.exp-role {
+  font-family: var(--mono); font-size: 1.05rem;
+  font-weight: 600; color: var(--text);
+  margin-bottom: 4px; letter-spacing: -0.02em;
+}
+.exp-company {
+  font-family: var(--mono); font-size: 0.8rem;
+  color: var(--accent); margin-bottom: 14px;
+}
+.exp-desc {
+  font-size: 0.9rem; color: var(--text2);
+  line-height: 1.75; font-weight: 300; margin-bottom: 16px;
+}
+.exp-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* ─── BLOG ─── */
+#blog { background: var(--bg2); }
+.blog-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.blog-card {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 28px;
+  text-decoration: none; display: block;
+  transition: all 0.3s;
+}
+.blog-card:hover {
+  border-color: var(--border-hover); transform: translateY(-3px);
+}
+.blog-cat {
+  font-family: var(--mono); font-size: 0.65rem;
+  color: var(--accent); letter-spacing: 0.12em;
+  text-transform: uppercase; margin-bottom: 12px; display: block;
+}
+.blog-title {
+  font-family: var(--mono); font-size: 1rem;
+  font-weight: 600; color: var(--text); margin-bottom: 10px;
+  line-height: 1.4; letter-spacing: -0.02em;
+}
+.blog-excerpt {
+  font-size: 0.85rem; color: var(--text2); line-height: 1.65;
+  margin-bottom: 20px; font-weight: 300;
+}
+.blog-meta {
+  font-family: var(--mono); font-size: 0.68rem; color: var(--text3);
+}
+
+/* ─── CONTACT ─── */
+#contact { background: var(--bg); }
+.contact-wrap { max-width: 640px; }
+.contact-email {
+  display: inline-block; margin: 32px 0;
+  font-family: var(--mono); font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+  font-weight: 600; color: var(--text); text-decoration: none;
+  letter-spacing: -0.02em;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 4px;
+  transition: color 0.3s, border-color 0.3s;
+}
+.contact-email:hover { color: var(--accent); border-color: var(--accent); }
+.contact-links { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+.contact-link {
+  font-family: var(--mono); font-size: 0.78rem;
+  color: var(--text2); text-decoration: none;
+  padding: 10px 18px; border: 1px solid var(--border);
+  border-radius: var(--radius-sm); transition: all 0.25s;
+}
+.contact-link:hover {
+  border-color: var(--accent); color: var(--accent);
+  background: var(--accent-dim);
+}
+
+/* ─── FOOTER ─── */
+footer {
+  padding: 28px 48px;
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  font-family: var(--mono); font-size: 0.72rem; color: var(--text3);
+}
+
+/* ─── REVEAL ANIMATION ─── */
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ─── MOBILE ─── */
+@media (max-width: 768px) {
+  nav { padding: 0 20px; }
+  .nav-links { display: none; flex-direction: column; gap: 0;
+    position: fixed; inset: 64px 0 0 0; background: var(--bg2);
+    padding: 20px; border-top: 1px solid var(--border); z-index: 999; }
+  .nav-links.open { display: flex; }
+  .nav-links a { padding: 14px 0; font-size: 0.9rem; border-bottom: 1px solid var(--border); }
+  .nav-toggle { display: flex; }
+
+  section { padding: 80px 20px; }
+  .hero-content { padding: 100px 20px 60px; }
+  .hero-name { font-size: 2.8rem; }
+  .hero-scroll { left: 20px; }
+
+  .about-grid { grid-template-columns: 1fr; gap: 32px; }
+  .stats-row { grid-template-columns: repeat(2,1fr); }
+  .stat-box:nth-child(2) { border-right: none; }
+  .stat-box:nth-child(3) { border-right: 1px solid var(--border); border-top: 1px solid var(--border); }
+  .stat-box:nth-child(4) { border-top: 1px solid var(--border); }
+
+  .project-item { grid-template-columns: 1fr; gap: 12px; }
+  .project-arrow { display: none; }
+  .project-item::before { left: -20px; right: -20px; }
+
+  .skills-grid { grid-template-columns: 1fr; }
+
+  .exp-item { grid-template-columns: 1fr; gap: 8px; }
+  .exp-dot { display: none; }
+  .exp-year { padding-top: 0; }
+
+  .blog-grid { grid-template-columns: 1fr; }
+
+  footer { flex-direction: column; gap: 8px; text-align: center; }
+}
+
+@media (max-width: 480px) {
+  .hero-name { font-size: 2.2rem; }
+  .hero-btns { flex-direction: column; }
+  .btn { width: 100%; justify-content: center; }
+  .stats-row { grid-template-columns: repeat(2,1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">shohan<span>.dev</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-toggle" id="navToggle" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-bg-img"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Available for new projects
+    </div>
+    <h1 class="hero-name">Shahriyar<br>Islam Shohan</h1>
+    <div class="hero-handle"><span>@</span>shahriyarislamshohan</div>
+    <p class="hero-desc">AI engineer building intelligent systems — from LLMs and workflow automation to production ML pipelines. Turning research into products that ship.</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn btn-primary">View Projects →</a>
+      <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+    </div>
+  </div>
+  <a class="hero-scroll" href="#about">scroll</a>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <span class="section-label">// about</span>
+    <h2 class="section-title reveal">Building AI That Ships</h2>
+    <p class="section-sub reveal">Not just research — production systems that scale.</p>
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="about-photo-wrap">
+          <div class="about-photo-inner">
+            <img src="photo.jpg" alt="Shahriyar Islam Shohan"
+              onerror="this.parentElement.style.background='#161616';this.style.display='none'">
+            <div class="about-photo-badge">terminal</div>
+          </div>
+        </div>
+        <div class="terminal-box" style="margin-top:20px;">
+          <div class="terminal-bar">
+            <span class="terminal-dot" style="background:#ff5f57"></span>
+            <span class="terminal-dot" style="background:#febc2e"></span>
+            <span class="terminal-dot" style="background:#28c840"></span>
+            <span class="terminal-bar-title">bash</span>
+          </div>
+          <div class="terminal-body">
+            <div class="term-line">
+              <span class="term-prompt">$</span>
+              <span class="term-cmd">whoami</span>
+            </div>
+            <div class="term-line">
+              <span class="term-prompt" style="color:var(--text3)">></span>
+              <span class="term-out">shahriyar_shohan</span>
+            </div>
+            <div class="term-line" style="margin-top:8px">
+              <span class="term-prompt">$</span>
+              <span class="term-cmd">cat skills.txt</span>
+            </div>
+            <div class="term-line">
+              <span class="term-prompt" style="color:var(--text3)">></span>
+              <span class="term-out">langchain, n8n, pytorch,</span>
+            </div>
+            <div class="term-line">
+              <span class="term-prompt" style="color:transparent">></span>
+              <span class="term-out">docker, python, angular</span>
+            </div>
+            <div class="term-line" style="margin-top:8px">
+              <span class="term-prompt">$</span>
+              <span class="term-cmd">echo $STATUS</span>
+            </div>
+            <div class="term-line">
+              <span class="term-prompt" style="color:var(--text3)">></span>
+              <span class="term-out" style="color:var(--accent)">building the future</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="about-text">
+          <p>I'm <strong>Shahriyar Islam Shohan</strong>, an AI Engineer based in Dhaka, Bangladesh. I specialize in building end-to-end intelligent systems — from training and fine-tuning custom LLMs to deploying them at scale in production environments.</p>
+          <p>My work spans <strong>large language models, multimodal AI, RAG pipelines, and MLOps</strong>. Currently engineering AI solutions for the bKash AML platform at <strong>DataSoft Systems Bangladesh Limited</strong>, working with cutting-edge models like MiniMax M2.5, GLM-5, and GPT-OSS 20B.</p>
+          <p>I believe the best AI isn't the most complex — it's the one that <strong>reliably ships value</strong> to users. When I'm not building pipelines or optimizing inference, you'll find me exploring new model architectures and automation tools.</p>
+        </div>
+        <div class="stats-row">
+          <div class="stat-box">
+            <div class="stat-box-num">3+</div>
+            <div class="stat-box-label">Years Exp</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-num">5+</div>
+            <div class="stat-box-label">AI Projects</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-num">10+</div>
+            <div class="stat-box-label">LLMs Used</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-num">∞</div>
+            <div class="stat-box-label">Papers Read</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <span class="section-label">// projects</span>
+    <h2 class="section-title reveal">What I've Built</h2>
+    <p class="section-sub reveal">A selection of AI-powered products and automation systems.</p>
+    <div class="projects-list">
+
+      <div class="project-item reveal">
+        <div>
+          <div class="project-num">PROJECT — 01</div>
+          <div class="project-name">n8n AI Workflow Automation Suite</div>
+          <div class="project-desc">Designed and deployed multiple production-level n8n automations integrating LLMs, APIs, and data pipelines for the bKash AML (Anti-Money Laundering) SiS platform. Handles real-time financial intelligence workflows at enterprise scale.</div>
+          <div class="project-tags">
+            <span class="tag">n8n</span>
+            <span class="tag">LLM APIs</span>
+            <span class="tag">Python</span>
+            <span class="tag">REST APIs</span>
+            <span class="tag">AML / FinTech</span>
+          </div>
+        </div>
+        <div class="project-arrow">↗</div>
+      </div>
+
+      <div class="project-item reveal">
+        <div>
+          <div class="project-num">PROJECT — 02</div>
+          <div class="project-name">LLM Integration Pipeline</div>
+          <div class="project-desc">Integrated MiniMax M2.5, GLM-5, and GPT-OSS 20B into production systems. Managed the full model lifecycle — server deployment, API integration, performance monitoring, and scaling across remote GPU infrastructure.</div>
+          <div class="project-tags">
+            <span class="tag">MiniMax M2.5</span>
+            <span class="tag">GLM-5</span>
+            <span class="tag">GPT-OSS 20B</span>
+            <span class="tag">Docker</span>
+            <span class="tag">GPU Server</span>
+          </div>
+        </div>
+        <div class="project-arrow">↗</div>
+      </div>
+
+      <div class="project-item reveal">
+        <div>
+          <div class="project-num">PROJECT — 03</div>
+          <div class="project-name">RAG & LangChain Agent System</div>
+          <div class="project-desc">Built retrieval-augmented generation pipelines and multi-step AI agents with vector database integration for intelligent document Q&A and complex task orchestration. Used LangGraph for stateful multi-agent workflows.</div>
+          <div class="project-tags">
+            <span class="tag">LangChain</span>
+            <span class="tag">LangGraph</span>
+            <span class="tag">RAG</span>
+            <span class="tag">Vector DB</span>
+            <span class="tag">Python</span>
+          </div>
+        </div>
+        <div class="project-arrow">↗</div>
+      </div>
+
+      <div class="project-item reveal">
+        <div>
+          <div class="project-num">PROJECT — 04</div>
+          <div class="project-name">Video Generation AI System</div>
+          <div class="project-desc">Deployed and maintained LTX 2.3, LTX 2, and HumoAI video generation models on remote GPU servers. Built inference pipelines, monitoring dashboards, and production workload management for continuous video AI generation.</div>
+          <div class="project-tags">
+            <span class="tag">LTX 2.3</span>
+            <span class="tag">HumoAI</span>
+            <span class="tag">GPU Server</span>
+            <span class="tag">Linux</span>
+            <span class="tag">Docker</span>
+          </div>
+        </div>
+        <div class="project-arrow">↗</div>
+      </div>
+
+      <div class="project-item reveal">
+        <div>
+          <div class="project-num">PROJECT — 05</div>
+          <div class="project-name">OpenClaw Process Automation Platform</div>
+          <div class="project-desc">Developed Angular frontend components and backend integrations for OpenClaw, an enterprise automation platform. Implemented web scraping pipelines to feed ML and data workflows, enabling end-to-end process automation.</div>
+          <div class="project-tags">
+            <span class="tag">Angular</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">Web Scraping</span>
+            <span class="tag">Python</span>
+            <span class="tag">REST API</span>
+          </div>
+        </div>
+        <div class="project-arrow">↗</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <span class="section-label">// skills</span>
+    <h2 class="section-title reveal">Tech Stack</h2>
+    <p class="section-sub reveal">The tools and technologies I work with daily.</p>
+    <div class="skills-grid">
+
+      <div class="skill-group reveal">
+        <div class="skill-group-title">AI / Machine Learning</div>
+        <div class="skill-bars">
+          <div class="skill-bar-item">
+            <div class="skill-bar-top"><span class="skill-bar-name">LangChain / LangGraph</span><span class="skill-bar-pct">92%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="92"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-top"><span class="skill-bar-name">RAG Pipelines</span><span class="skill-bar-pct">90%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-top"><span class="skill-bar-name">Fine-tuning (LoRA/QLoRA)</span><span class="skill-bar-pct">85%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-top"><span class="skill-bar-name">Prompt Engineering</span><span class="skill-bar-pct">93%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="93"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-top"><span class="skill-bar-name">Vector Databases</span><span class="skill-bar-pct">88%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-group reveal">
+        <div class="skill-group-title">Automation & DevOps</div>
+        <div class="skill-bars">
+          <div class="skill-bar-item">
+            <div class="skill-bar-top"><span class="skill-bar-name">n8n Workflows</span><span class="skill-bar-pct">95%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-top"><span class="skill-bar-name">Docker</span><span class="skill-bar-pct">88%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-top"><span class="skill-bar-name">Linux / GPU Server</span><span class="skill-bar-pct">85%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-top"><span class="skill-bar-name">REST APIs</span><span class="skill-bar-pct">92%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="92"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-top"><span class="skill-bar-name">Web Scraping</span><span class="skill-bar-pct">87%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="87"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-group reveal">
+        <div class="skill-group-title">Frontend & Backend</div>
+        <div class="skill-bars">
+          <div class="skill-bar-item">
+            <div class="skill-bar-top"><span class="skill-bar-name">Python</span><span class="skill-bar-pct">93%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="93"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-top"><span class="skill-bar-name">Angular / TypeScript</span><span class="skill-bar-pct">82%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="82"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-top"><span class="skill-bar-name">Django</span><span class="skill-bar-pct">78%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="78"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-top"><span class="skill-bar-name">MySQL / PostgreSQL</span><span class="skill-bar-pct">80%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-top"><span class="skill-bar-name">Solidity / Blockchain</span><span class="skill-bar-pct">72%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="72"></div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <span class="section-label">// experience</span>
+    <h2 class="section-title reveal">Where I've Worked</h2>
+    <p class="section-sub reveal">From blockchain internships to scaling AI at fintech companies.</p>
+    <div class="exp-list">
+
+      <div class="exp-item reveal">
+        <div class="exp-year">2026 — Present</div>
+        <div class="exp-dot"></div>
+        <div>
+          <div class="exp-role">AI Engineer</div>
+          <div class="exp-company">DataSoft Systems Bangladesh Limited</div>
+          <div class="exp-desc">Building production-level n8n workflow automations and LLM pipelines for the bKash AML (Anti-Money Laundering) SiS platform. Integrated MiniMax M2.5, GLM-5, and GPT-OSS 20B for NLP and financial intelligence. Deployed video generation models on remote GPU servers and implemented RAG pipelines with vector database integration. Built Angular frontend components for OpenClaw enterprise automation.</div>
+          <div class="exp-tags">
+            <span class="tag">n8n</span>
+            <span class="tag">LangChain</span>
+            <span class="tag">RAG</span>
+            <span class="tag">Docker</span>
+            <span class="tag">Angular</span>
+            <span class="tag">Python</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-year">2025 — 2026</div>
+        <div class="exp-dot"></div>
+        <div>
+          <div class="exp-role">AI Intern</div>
+          <div class="exp-company">DataSoft Systems Bangladesh Limited</div>
+          <div class="exp-desc">Contributed to AI research and development within the bKash AML platform team. Gained hands-on production experience with LLM deployment, prompt engineering pipelines, and fine-tuning workflows using LoRA and QLoRA techniques.</div>
+          <div class="exp-tags">
+            <span class="tag">LLM</span>
+            <span class="tag">LoRA</span>
+            <span class="tag">QLoRA</span>
+            <span class="tag">Prompt Engineering</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-year">2024 — Present</div>
+        <div class="exp-dot"></div>
+        <div>
+          <div class="exp-role">Web Developer</div>
+          <div class="exp-company">Cartify BD</div>
+          <div class="exp-desc">Designing and developing full-stack e-commerce web features on a part-time basis. Built responsive frontend interfaces and optimised backend database queries for performance at scale.</div>
+          <div class="exp-tags">
+            <span class="tag">Full-Stack</span>
+            <span class="tag">E-Commerce</span>
+            <span class="tag">MySQL</span>
+            <span class="tag">JavaScript</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-year">2023 — 2024</div>
+        <div class="exp-dot"></div>
+        <div>
+          <div class="exp-role">Trainee Blockchain Developer</div>
+          <div class="exp-company">SIMEC System Ltd.</div>
+          <div class="exp-desc">Developed and tested Solidity smart contracts on Ethereum-based platforms. Contributed to decentralised application (dApp) architecture and design, learning the full blockchain development lifecycle.</div>
+          <div class="exp-tags">
+            <span class="tag">Solidity</span>
+            <span class="tag">Ethereum</span>
+            <span class="tag">dApps</span>
+            <span class="tag">Web3</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog">
+  <div class="section-inner">
+    <span class="section-label">// blog</span>
+    <h2 class="section-title reveal">Writing & Thinking</h2>
+    <p class="section-sub reveal">Thoughts on AI engineering, LLMs, and building production systems.</p>
+    <div class="blog-grid">
+
+      <a href="#" class="blog-card reveal">
+        <span class="blog-cat">LLM</span>
+        <div class="blog-title">Why RAG is the Default Architecture for Enterprise AI</div>
+        <div class="blog-excerpt">Retrieval-Augmented Generation is becoming the standard for production AI. Here's why it works and how to build one that doesn't break at scale.</div>
+        <div class="blog-meta">Coming soon · 8 min read</div>
+      </a>
+
+      <a href="#" class="blog-card reveal">
+        <span class="blog-cat">MLOps</span>
+        <div class="blog-title">Fine-Tuning with LoRA vs. Prompting: A Practical Guide</div>
+        <div class="blog-excerpt">When should you fine-tune a model with LoRA versus engineering better prompts? I break down cost, performance, and maintenance trade-offs from real production experience.</div>
+        <div class="blog-meta">Coming soon · 10 min read</div>
+      </a>
+
+      <a href="#" class="blog-card reveal">
+        <span class="blog-cat">Automation</span>
+        <div class="blog-title">Building n8n AI Pipelines That Don't Break at 3AM</div>
+        <div class="blog-excerpt">Lessons from running production n8n LLM workflows for financial intelligence systems. Monitoring, error handling, and rollback strategies that actually work.</div>
+        <div class="blog-meta">Coming soon · 7 min read</div>
+      </a>
+
+      <a href="#" class="blog-card reveal">
+        <span class="blog-cat">AI Engineering</span>
+        <div class="blog-title">GPU Server Administration for LLM Inference Workloads</div>
+        <div class="blog-excerpt">A practical guide to deploying and maintaining video generation and LLM models on remote GPU servers — from setup to production monitoring and cost optimization.</div>
+        <div class="blog-meta">Coming soon · 9 min read</div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <span class="section-label">// contact</span>
+    <h2 class="section-title reveal">Let's Build Something</h2>
+    <div class="contact-wrap reveal">
+      <p style="font-size:0.95rem;color:var(--text2);font-weight:300;line-height:1.75;margin-bottom:8px;">
+        Have a project in mind? I'm always open to discussing new opportunities in AI engineering, automation, or intelligent system design.
+      </p>
+      <a href="mailto:shahriyarislamshohan@gmail.com" class="contact-email">
+        shahriyarislamshohan@gmail.com
+      </a>
+      <div class="contact-links">
+        <a href="https://github.com/shahriyarislamshohan" target="_blank" class="contact-link">GitHub</a>
+        <a href="https://www.linkedin.com/in/shahriyar-islam-shohan/" target="_blank" class="contact-link">LinkedIn</a>
+        <a href="tel:+8801767605865" class="contact-link">+880 1767605865</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Shahriyar Islam Shohan. All rights reserved.</span>
+  <span>Built with HTML · CSS · JS</span>
+</footer>
+
+<script>
+// Mobile nav toggle
+function toggleNav() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+// Close nav on link click
+document.querySelectorAll('#navLinks a').forEach(a => {
+  a.addEventListener('click', () => {
+    document.getElementById('navLinks').classList.remove('open');
+  });
+});
+
+// Scroll reveal
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// Skill bars animate when visible
+const barObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+        const w = bar.getAttribute('data-width');
+        setTimeout(() => { bar.style.width = w + '%'; }, 200);
+      });
+      barObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.skill-group').forEach(g => barObserver.observe(g));
+
+// Nav active link highlight on scroll
+const sections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY + 80;
+  sections.forEach(s => {
+    const top = s.offsetTop; const h = s.offsetHeight;
+    const link = document.querySelector(`nav a[href="#${s.id}"]`);
+    if (link) link.style.color = (scrollY >= top && scrollY < top + h) ? 'var(--text)' : '';
+  });
+});
+
+// Typing cursor effect on terminal
+const outputs = document.querySelectorAll('.term-out');
+outputs.forEach((el, i) => {
+  el.style.opacity = '0';
+  setTimeout(() => {
+    el.style.transition = 'opacity 0.3s';
+    el.style.opacity = '1';
+  }, 600 + i * 300);
+});
+</script>
+
+</body>
+</html>
